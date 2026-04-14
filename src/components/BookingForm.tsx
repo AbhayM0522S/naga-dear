@@ -4,18 +4,23 @@ import Toast from './Toast';
 
 interface BookingFormProps {
   initialTicketNumber?: string;
+  initialSem?: string;
   onBookingComplete?: () => void;
 }
 
 const timeSlots = ['1:00 PM', '6:00 PM', '8:00 PM'];
 
-const BookingForm: React.FC<BookingFormProps> = ({ initialTicketNumber = '', onBookingComplete }) => {
+const BookingForm: React.FC<BookingFormProps> = ({ initialTicketNumber = '', initialSem = '', onBookingComplete }) => {
   const navigate = useNavigate();
+  
+  // Read SEM from localStorage if not provided via props
+  const storedSem = !initialSem ? (localStorage.getItem('selectedSem') || '5 Sem') : initialSem;
+
   const [formData, setFormData] = useState({
     name: '',
     phoneNumber: '',
-    sem: '',
-    time: '',
+    sem: storedSem,
+    time: '1:00 PM',
     date: '',
     ticketNumber: initialTicketNumber,
     city: '',
@@ -78,6 +83,9 @@ const BookingForm: React.FC<BookingFormProps> = ({ initialTicketNumber = '', onB
     };
     bookings.push(newBooking);
     localStorage.setItem('bookings', JSON.stringify(bookings));
+    
+    // Clear selected SEM from localStorage
+    localStorage.removeItem('selectedSem');
 
     // Show success toast
     setToastMessage('Ticket booked successfully!');
@@ -87,8 +95,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ initialTicketNumber = '', onB
     setFormData({
       name: '',
       phoneNumber: '',
-      sem: '',
-      time: '',
+      sem: '5 Sem',
+      time: '1:00 PM',
       date: '',
       ticketNumber: '',
       city: '',
@@ -167,7 +175,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ initialTicketNumber = '', onB
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-200 transition bg-white text-gray-900"
                 required
               >
-                <option value="">Choose SEM value</option>
                 <option value="5 Sem">5 Sem</option>
                 <option value="10 Sem">10 Sem</option>
                 <option value="30 Sem">30 Sem</option>
@@ -188,7 +195,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ initialTicketNumber = '', onB
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-200 transition bg-white text-gray-900"
                 required
               >
-                <option value="">Select time slot</option>
                 {timeSlots.map((slot) => (
                   <option key={slot} value={slot}>
                     {slot}

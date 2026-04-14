@@ -5,15 +5,23 @@ import './index.css'
 import App from './App.tsx'
 import BookingPage from './pages/BookingPage.tsx'
 import HistoryPage from './pages/HistoryPage.tsx'
+import LoginPage from './pages/LoginPage.tsx'
+import TokenPage from './pages/TokenPage.tsx'
+import { AuthProvider } from './context/AuthContext.tsx'
+import ProtectedRoute from './components/ProtectedRoute.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/booking" element={<BookingPage />} />
-        <Route path="/history" element={<HistoryPage />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<ProtectedRoute><App /></ProtectedRoute>} />
+          <Route path="/booking" element={<ProtectedRoute><BookingPage /></ProtectedRoute>} />
+          <Route path="/history" element={<ProtectedRoute><HistoryPage /></ProtectedRoute>} />
+          <Route path="/token" element={<ProtectedRoute><TokenPage /></ProtectedRoute>} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
 )
