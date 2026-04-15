@@ -264,7 +264,7 @@ const BookingHistorySection = () => {
     y += 15;
 
     // ---- PASSENGER DETAILS ----
-    y = drawSectionHeader('PASSENGER DETAILS', y);
+    y = drawSectionHeader('COSTUMER DETAILS', y);
     drawBox(margin, y, pageWidth - 2 * margin, 25);
     y += 8;
     y = drawKeyValue('Name:', booking.name, margin + 5, y, 25);
