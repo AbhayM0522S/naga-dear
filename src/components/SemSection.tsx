@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Toast from './Toast';
 
 const SemSection = () => {
-  const semValues = ['5 Sem', '10 Sem', '30 Sem', '50 Sem', '100 Sem'];
+  const semValues = ['5 Sem', '10 Sem', '30 Sem', '50 Sem', '100 Sem','200 Sem'];
   const [selectedSem, setSelectedSem] = useState<string | null>(null);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' } | null>(null);
 
@@ -22,7 +22,7 @@ const SemSection = () => {
 
   return (
     <div className="w-full">
-      <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-x-28">
+      <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-x-20">
         {semValues.map((value) => (
           <button
             key={value}
