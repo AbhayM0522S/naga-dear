@@ -180,6 +180,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ initialTicketNumber = '', ini
                 <option value="30 Sem">30 Sem</option>
                 <option value="50 Sem">50 Sem</option>
                 <option value="100 Sem">100 Sem</option>
+                <option value="200 Sem">200 Sem</option>
               </select>
             </div>
 
