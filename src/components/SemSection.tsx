@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Toast from './Toast';
 
 const SemSection = () => {
-  const semValues = ['5 Sem', '10 Sem', '30 Sem', '50 Sem', '100 Sem','499 Sem'];
+  const semValues = ['5 Sem', '10 Sem', '30 Sem', '50 Sem', '100 Sem','200 Sem'];
   const [selectedSem, setSelectedSem] = useState<string | null>(null);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' } | null>(null);
 
