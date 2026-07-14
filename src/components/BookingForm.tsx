@@ -27,6 +27,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ initialTicketNumber = '', ini
     state: '',
     pincode: '',
     addressLine1: '',
+    gstBilling: '',
     agree: false,
   });
 
@@ -102,6 +103,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ initialTicketNumber = '', ini
       city: '',
       state: '',
       pincode: '',
+      gstBilling: '',
       addressLine1: '',
       agree: false,
     });
@@ -279,6 +281,21 @@ const BookingForm: React.FC<BookingFormProps> = ({ initialTicketNumber = '', ini
                 onChange={(e) => setFormData({ ...formData, pincode: e.target.value.replace(/[^0-9]/g, '').slice(0, 6) })}
                 placeholder="6-digit pincode"
                 maxLength={6}
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-200 transition bg-white text-gray-900 placeholder-gray-500"
+                required
+              />
+            </div>
+             {/* Gst Billing */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-800 mb-2">
+                GST Billing Number <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                name="gstBilling"
+                value={formData.gstBilling}
+                onChange={handleChange}
+                placeholder="Enter GST billing information"
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-200 transition bg-white text-gray-900 placeholder-gray-500"
                 required
               />
