@@ -212,7 +212,7 @@ function TokenModal({ onClose }: TokenModalProps) {
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <div className="flex items-center gap-2">
               <Banknote className="w-5 h-5 text-red-600" />
-              <span className="text-lg font-bold text-red-800">Pay: ₹200</span>
+              <span className="text-lg font-bold text-red-800">Pay: ₹499</span>
             </div>
           </div>
 
