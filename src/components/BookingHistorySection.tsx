@@ -14,6 +14,8 @@ interface Booking {
   city: string;
   state: string;
   pincode: string;
+  gstBilling?: string;
+  GstBilling?: string;
   addressLine1: string;
   status: string;
   createdAt: string;
@@ -269,6 +271,7 @@ const BookingHistorySection = () => {
     y += 8;
     y = drawKeyValue('Name:', booking.name, margin + 5, y, 25);
     y = drawKeyValue('Phone:', booking.phoneNumber, margin + 5, y, 25);
+    y = drawKeyValue('GST Billing:', getGstBilling(booking), margin + 5, y, 25);
     y += 5;
 
     // ---- BOOKING DETAILS ----
@@ -366,6 +369,8 @@ const BookingHistorySection = () => {
     });
   };
 
+  const getGstBilling = (booking: Booking) => booking.gstBilling || booking.GstBilling || 'N/A';
+
   if (bookings.length === 0) {
     return (
       <div className="bg-linear-to-br from-blue-50 to-indigo-50 rounded-3xl shadow-lg p-8 sm:p-12 border-2 border-blue-200 text-center">
@@ -450,6 +455,10 @@ const BookingHistorySection = () => {
                       <div>
                         <p className="text-xs text-gray-500 font-semibold uppercase mb-1">Booked At</p>
                         <p className="text-sm text-gray-800 font-medium">{formatTime(booking.createdAt)}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-gray-500 font-semibold uppercase mb-1">GST Billing</p>
+                        <p className="text-sm text-gray-800 font-medium">{getGstBilling(booking)}</p>
                       </div>
                     </div>
                   </div>
@@ -540,6 +549,10 @@ const BookingHistorySection = () => {
                       <div>
                         <p className="text-xs text-gray-500 font-semibold uppercase mb-1">Booked At</p>
                         <p className="text-sm text-gray-800 font-medium">{formatTime(booking.createdAt)}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-gray-500 font-semibold uppercase mb-1">GST Billing</p>
+                        <p className="text-sm text-gray-800 font-medium">{getGstBilling(booking)}</p>
                       </div>
                     </div>
                   </div>
